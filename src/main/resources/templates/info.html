@@ -34,54 +34,60 @@ body {
 			<table border=0 cellspacing="0" >
 		    	<tr>
 		    		<td><b><font color="blue"><label>Path：</label></font></b></td>
-		    		<td id="tdv"><b><font color="red" th:text="${zkpath}">zkpath</font></b></td>
+		    		<td id="tdv" style="width: 100%;word-break: break-all;">
+						<b><font color="red" th:text="${zkpath}">zkpath</font></b>
+					</td>
 		    	</tr>
 		    </table>
 		</td>
 	</tr>
 	<tr>
-		<td align="left" valign="top"  >
-		    <table border=0 cellspacing="0" width=300>
-		    	<tr><td id="htd" colspan="2"><b><font color="blue"><label>Node ACLs</label></font></b></td></tr>
-		    		<!-- <c:forEach items="${acls}" var="acl"> -->
-						<!--/*/ <th:block th:each="acl : ${acls}"> /*/-->
-						<tr>
-							<td id="htd"><label >Scheme：</label></td>
-							<td id="tdhpx" th:text="${acl.scheme}">acl.scheme</td>
-						</tr>
-						<tr>
-							<td id="htd"><label >Id：</label></td>
-							<td id="tdhpx" th:text="${acl.id}">acl.id</td>
-						</tr>
-						<tr>
-							<td id="htd" valign="top"><label >Permissions：</label></td>
-							<td id="tdhpx" th:text="${acl.perms}">acl.perms</td>
-						</tr>
-						<!--/*/ </th:block> /*/--> 
-					<!-- </c:forEach> -->
-			</table>
-			</td>
-			<td align="left" valign="top" rowspan="2">
-				<form id="ff" action="zk/saveData" method="post">
-			    <input type="hidden" th:value="${cacheId}" name="cacheId" />
-			    <input type="hidden" th:value="${path}" name="path" />
+		<td align="left" valign="top" rowspan="3">
+			<form id="ff" action="zk/saveData" method="post">
+				<input type="hidden" th:value="${cacheId}" name="cacheId" />
+				<input type="hidden" th:value="${path}" name="path" />
 				<table border=0 cellspacing="0">
-			    	<tr>
-			    	<td><b><font color="blue"><label>Node Data</label></font></b></td>
-			    	<td align="right"><a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="javascript:$('#ff').submit();"><span data-locale-html="save">保存</span></a></td>
-			    	</tr>
-			    	<tr>
+					<tr>
 						<td align="left" valign="top" colspan="2">
-						<textarea rows="20" name="data" cols="70" style="border:1px solid CornflowerBlue ;width:98%;margin: 3px;" th:text="${data}">data</textarea>
+							<textarea rows="25" name="data" cols="120" style="border:1px solid CornflowerBlue ;width:98%;margin: 3px;" th:text="${data}">data</textarea>
 						</td>
 					</tr>
-			    </table>
-				</form>
-			</td>
-		</tr>
+				</table>
+			</form>
+		</td>
+		<td align="left">
+			<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'"
+			   onclick="javascript:$('#ff').submit();">
+				<span data-locale-html="save">保存</span>
+			</a>
+		</td>
+	</tr>
+	<tr>
+		<td align="left" valign="top"  >
+			<table border=0 cellspacing="0" width="250px">
+				<tr><td id="htd" colspan="2"><b><font color="blue"><label>Node ACLs</label></font></b></td></tr>
+				<!-- <c:forEach items="${acls}" var="acl"> -->
+				<!--/*/ <th:block th:each="acl : ${acls}"> /*/-->
+				<tr>
+					<td id="htd"><label >Scheme：</label></td>
+					<td id="tdhpx" th:text="${acl.scheme}">acl.scheme</td>
+				</tr>
+				<tr>
+					<td id="htd"><label >Id：</label></td>
+					<td id="tdhpx" th:text="${acl.id}">acl.id</td>
+				</tr>
+				<tr>
+					<td id="htd" valign="top"><label >Permissions：</label></td>
+					<td id="tdhpx" th:text="${acl.perms}">acl.perms</td>
+				</tr>
+				<!--/*/ </th:block> /*/-->
+				<!-- </c:forEach> -->
+			</table>
+		</td>
+	</tr>
 		<tr>
 			<td align="left" valign="top"  >
-			<table border=0 cellspacing="0"  width=300>
+			<table border=0 cellspacing="0"  width="250px">
 		    	<tr><td colspan="2"><b><font color="blue"><label>Node Metadata</label></font></b></td></tr>
 		    		<tr><td id="htd"><label >Data Length：</label></td><td id="tdh" th:text="${dataLength}">dataLength</td></tr>
 					<tr><td id="htd"><label >Creation Time：</label></td><td id="tdh" th:text="${ctime}">ctime</td></tr>

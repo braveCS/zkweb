@@ -44,14 +44,12 @@ public class ZkManagerImpl implements Watcher,ZkManager {
 	private ZkConnectInfo zkConnectInfo=new ZkConnectInfo();
 	private final String ROOT = "/";
 	private static final org.slf4j.Logger log = LoggerFactory.getLogger(ZkManagerImpl.class);
-//	private static final ZkManagerImpl _instance = new ZkManagerImpl();
 	public ZkManagerImpl(){
 		new ZkJMXInfo(zkConnectInfo);
 		serverStatusByCMD=new ServerStatusByCMD(zkConnectInfo);
 	}
 	
 	public static ZkManagerImpl createZk(){
-		
 		return new ZkManagerImpl();
 	}
 	public static class ZkConnectInfo{
@@ -101,6 +99,7 @@ public class ZkManagerImpl implements Watcher,ZkManager {
 			this.timeout = timeout;
 		}
 	}
+
 	private interface ZkState{
 		List<PropertyPanel> state() throws IOException, MalformedObjectNameException,  
         InstanceNotFoundException, IntrospectionException, ReflectionException;
@@ -110,7 +109,6 @@ public class ZkManagerImpl implements Watcher,ZkManager {
 	
 	public static class ServerStatusByCMD implements ZkState{  
 		private ZkConnectInfo zkConnectInfo;
-		
 		private static final ImmutableMap<String, ImmutableList<String>> cmdKeys=new ImmutableMap.Builder<String, ImmutableList<String>>()
 				.put(
 				"srvr",ImmutableList.of(
@@ -523,51 +521,6 @@ public class ZkManagerImpl implements Watcher,ZkManager {
 	        }  
 	    }  
 	}  
-//	public boolean connect(Properties p) {
-//
-//		try {
-//			return this.connect(p.getProperty(P.host.toString()), (Integer
-//					.valueOf(p.getProperty(P.sessionTimeOut.toString()))));
-//		} catch (Exception e) {
-//			log.info("",e);
-//			return false;
-//		}
-//	};
-//
-//	private boolean connect(String host, int timeout) {
-//		try {
-//			if (null == zk) {
-//				zk = new ZooKeeper(host, timeout, this);
-//			}
-//		} catch (Exception e) {
-//			log.info("",e);
-//			return false;
-//		}
-//		return true;
-//	}
-	
-//	public ZkManagerImpl connect() {
-//
-//		try {
-//			Properties p = ConfigUtil.getP();
-//			return this.connect(p.getProperty(P.host.toString()), (Integer
-//					.valueOf(p.getProperty(P.sessionTimeOut.toString()))));
-//		} catch (Exception e) {
-//			log.info("",e);
-//			return this;
-//		}
-//	};
-//	
-//	public ZkManagerImpl connect(Properties p) {
-//
-//		try {
-//			return this.connect(p.getProperty(P.host.toString()), (Integer
-//					.valueOf(p.getProperty(P.sessionTimeOut.toString()))));
-//		} catch (Exception e) {
-//			log.info("",e);
-//			return this;
-//		}
-//	};
 	@Override
 	public List<PropertyPanel> getJMXInfo(boolean simpleFlag) {
 		try {

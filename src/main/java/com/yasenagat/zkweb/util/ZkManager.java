@@ -5,8 +5,6 @@ import java.util.Map;
 
 public interface ZkManager {
 
-	//public ZkManagerImpl connect(Properties p);
-
 	public ZkManagerImpl connect(String host, int timeout);
 
 	public boolean disconnect();
@@ -31,23 +29,10 @@ public interface ZkManager {
 	public long getNodeId(String nodePath);
 
 	public enum P {
-
 		host, sessionTimeOut
 	}
 
 	public enum Meta {
-
-		// ACL_Version,
-		// Creation_Time,
-		// Children_Version,
-		// Creation_ID,
-		// Data_Length,
-		// Ephemeral_Owner,
-		// Last_Modified_Time,
-		// Modified_ID,
-		// Number_of_Children,
-		// Node_ID,
-		// Data_Version
 		czxid, mzxid, ctime, mtime, version, cversion, aversion, ephemeralOwner, dataLength, numChildren, pzxid
 	}
 

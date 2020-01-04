@@ -43,7 +43,7 @@
 	   	
 		    	
     </div> 
-    <div data-options="region:'east',split:true,collapsed:false,title:'Zk状态'" style="width:320px;padding:1px;">
+    <div data-options="region:'east',split:true,collapsed:true,title:'Zk状态'" style="width:320px;padding:1px;">
 		<div id="jmx">
 			<form id="zkstate_showtype_form" method="post" action="">
 			<input type="hidden" name="id"/>
@@ -68,11 +68,11 @@
     
     <div data-options="region:'south',border:false" style="height:50px;background:#A9FACD;padding:10px;">south region</div>  
     -->
-	<div data-options="region:'west',split:true,collapsed:false,title:'ZK节点树'" style="width:150px;padding:1px;">
-		<ul id="zkTree" class="easyui-tree" style="width:120px;">
+	<div data-options="region:'west',split:true,collapsed:false,title:'ZK节点树'" style="width:300px;padding:1px;">
+		<ul id="zkTree" class="easyui-tree" >
     	</ul> 
     	<!-- right -->
-    	<div id="mm" class="easyui-menu" style="width:120px;">  
+    	<div id="mm" class="easyui-menu" >
 	        <div onclick="javascript:$('#zkweb_add_node').window('open');" data-options="iconCls:'icon-add'"><span data-locale-html="add">添加</span></div>  
 	        <div onclick="remove()" data-options="iconCls:'icon-remove'"><span data-locale-html="remove">删除</span></div>  
 	        <div class="menu-sep"></div>  

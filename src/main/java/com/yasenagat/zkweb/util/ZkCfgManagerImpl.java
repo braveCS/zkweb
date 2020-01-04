@@ -24,18 +24,12 @@ import org.springframework.stereotype.Component;
 public class ZkCfgManagerImpl implements InitializingBean,ZkCfgManager {
 
 	private static Logger log = LoggerFactory.getLogger(ZkCfgManagerImpl.class);
-//	jdbc:h2:tcp://localhost/~/test
 	@Autowired
 	private DataSource dataSource;
-	//private JdbcConnectionPool cpool = JdbcConnectionPool.create("jdbc:h2:~/zkweb","sa","sa");
-//	private static JdbcConnectionPool cp = JdbcConnectionPool.create("jdbc:h2:tcp://127.0.0.1/~/zkweb","sa","sa"); 
 	private static Connection conn = null;
 	static QueryRunner run = new QueryRunner(H2Util.getDataSource());
 	
 	public ZkCfgManagerImpl() {
-		//cpool.setMaxConnections(20);
-		//cpool.setLoginTimeout(1000 * 50);
-		//init();
 	};
 	private Connection getConnection() throws SQLException{
 		if(null == conn){
@@ -57,10 +51,6 @@ public class ZkCfgManagerImpl implements InitializingBean,ZkCfgManager {
 	public void destroyPool() {
 		H2Util.destroyDataSource();
 		closeConn();
-//		if(cpool!=null) {
-//			cpool.dispose();
-//		}
-
 	}
 	
 	private boolean init() {
@@ -189,7 +179,7 @@ public class ZkCfgManagerImpl implements InitializingBean,ZkCfgManager {
 			String sessionTimeOut) {
 		PreparedStatement ps = null;
 		try {
-			ps = getConnection().prepareStatement("UPDATE ZK SET DESC=?,CONNECTSTR=?,SESSIONTIMEOUT=? WHERE ID=?;");
+			ps = getConnection().prepareStatement("update ZK set desc=?,CONNECTSTR=?,SESSIONTIMEOUT=? where id=?");
 			ps.setString(1, desc);
 			ps.setString(2, connectStr);
 			ps.setString(3, sessionTimeOut);
@@ -397,9 +387,6 @@ public class ZkCfgManagerImpl implements InitializingBean,ZkCfgManager {
 		try {
 			 ps = getConnection().prepareStatement("SELECT ID,DESC,CONNECTSTR,SESSIONTIMEOUT FROM ZK where 1=0");
 			 rs = ps.executeQuery();
-//			 if(rs.next()){
-//				 return rs.getInt(1);
-//			 }
 			 return true;
 		} catch (SQLException e) {
 			//e.printStackTrace();
@@ -428,7 +415,6 @@ public class ZkCfgManagerImpl implements InitializingBean,ZkCfgManager {
 		}
 	}
 	
-	//@PostConstruct
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		init();
